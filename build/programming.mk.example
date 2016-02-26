@@ -1,0 +1,13 @@
+STLINK_DIR = /mnt/files/system/software/arm/st/stlink
+
+OPENOCD_BIN = openocd
+OPENOCD_ARGS = -s /mnt/files/system/software/openocd/install/share/openocd/scripts/ -f interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg
+
+# Direct programming with st-flash
+flash: $(TARGET).bin
+	$(STLINK_DIR)/st-flash write $< 0x8000000
+
+openocd:$(TARGET).bin
+	$(OPENOCD_BIN) $(OPENOCD_ARGS)
+
+.PHONY: flash openocd

@@ -1,0 +1,6 @@
+[submodule "system/CMSIS_STM32F0"]
+	path = system/CMSIS_STM32F0
+	url = ../submodules/CMSIS_STM32F0
+[submodule "system/STM32F0xx_HAL_Driver"]
+	path = system/STM32F0xx_HAL_Driver
+	url = ../submodules/STM32F0xx_HAL_Driver

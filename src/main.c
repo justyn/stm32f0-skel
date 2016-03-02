@@ -40,8 +40,6 @@
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc;
 
-CRC_HandleTypeDef hcrc;
-
 I2C_HandleTypeDef hi2c1;
 
 SPI_HandleTypeDef hspi1;
@@ -61,7 +59,6 @@ USART_HandleTypeDef husart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_ADC_Init(void);
-static void MX_CRC_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM2_Init(void);
@@ -107,7 +104,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_ADC_Init();
-  MX_CRC_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_TIM2_Init();
@@ -201,20 +197,6 @@ void MX_ADC_Init(void)
   sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
-
-}
-
-/* CRC init function */
-void MX_CRC_Init(void)
-{
-
-  hcrc.Instance = CRC;
-  hcrc.Init.DefaultPolynomialUse = DEFAULT_POLYNOMIAL_ENABLE;
-  hcrc.Init.DefaultInitValueUse = DEFAULT_INIT_VALUE_ENABLE;
-  hcrc.Init.InputDataInversionMode = CRC_INPUTDATA_INVERSION_NONE;
-  hcrc.Init.OutputDataInversionMode = CRC_OUTPUTDATA_INVERSION_DISABLED;
-  hcrc.InputDataFormat = CRC_INPUTDATA_FORMAT_BYTES;
-  HAL_CRC_Init(&hcrc);
 
 }
 

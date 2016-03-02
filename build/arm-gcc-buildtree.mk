@@ -1,7 +1,6 @@
 # Requires the following variables to exist:
 #  PROJECT
 #  SUFFIX
-#  TARGET
 #  LDLIBS
 #  LDSCRIPTS
 #  LIBDIRS
@@ -9,10 +8,21 @@
 #  INCDIRS
 #  CFLAGS
 #  CXXFLAGS
+#  ASFLAGS
 #  LDFLAGS
-# C_SRCS
-# CXX_SRCS
-# AS_SRCS
+#  C_SRCS
+#  CXX_SRCS
+#  AS_SRCS
+
+# In debug mode the suffix _debug is added to targets and objects to prevent contamination.
+ifeq ($(MODE),DEBUG)
+	SUFFIX=_debug
+else
+	SUFFIX=
+endif
+
+# Add suffix to create target name
+TARGET:=$(PROJECT)$(SUFFIX)
 
 # Objects will be in mirrored folder tree in build folder
 OBJS := $(patsubst ../%.c,%$(SUFFIX).o,$(C_SRCS))

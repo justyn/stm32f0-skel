@@ -282,19 +282,23 @@
  #include "stm32f0xx_hal_wwdg.h"
 #endif /* HAL_WWDG_MODULE_ENABLED */
 
+ /* udebug macros -------------------------------------------------------------*/
+ #if UDEBUG_LEVEL
+ #include "udebug.h"
+ #elif !defined(UDEBUG_DUMMY)
+ #define UDEBUG_DUMMY
+ #define udebug_error(x, ...) while(0)
+ #define udebug_warn(x, ...) while(0)
+ #define udebug_info(x, ...) while(0)
+ #define udebug_assert(x) while(0)
+ #endif
+
 /* Exported macro ------------------------------------------------------------*/
 #ifdef  USE_FULL_ASSERT
-/**
-  * @brief  The assert_param macro is used for function's parameters check.
-  * @param  expr: If expr is false, it calls assert_failed function
-  *         which reports the name of the source file and the source
-  *         line number of the call that failed. 
-  *         If expr is true, it returns no value.
-  * @retval None
+ /*
+  * Replace STM32 HAL assert_param macro with udebug_assert.
   */
-  #define assert_param(expr) ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__, __LINE__))
-/* Exported functions ------------------------------------------------------- */
-  void assert_failed(uint8_t* file, uint32_t line);
+  #define assert_param(expr) udebug_assert(expr)
 #else
   #define assert_param(expr) ((void)0)
 #endif /* USE_FULL_ASSERT */    

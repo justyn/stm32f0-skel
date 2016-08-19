@@ -1,9 +1,9 @@
 [submodule "system/CMSIS_STM32F0"]
 	path = system/CMSIS_STM32F0
-	url = ../submodules/CMSIS_STM32F0
+	url = https://github.com/jbots/CMSIS_STM32F0
 [submodule "system/STM32F0xx_HAL_Driver"]
 	path = system/STM32F0xx_HAL_Driver
-	url = ../submodules/STM32F0xx_HAL_Driver
+	url = https://github.com/jbots/STM32F0xx_HAL_Driver
 [submodule "system/semihosting-cortexm-uos"]
 	path = system/semihosting-cortexm-uos
-	url = ../submodules/semihosting-cortexm-uos
+	url = https://github.com/justyn/semihosting-cortexm-uos
